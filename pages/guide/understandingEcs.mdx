@@ -1,0 +1,26 @@
+# What is ECS?
+This stands for Entity-component-system.
+
+***"A software architectural pattern mostly used in video game development for the representation of game world objects."*** - Wikipedia ;)
+
+A game engine known by many that uses an ECS is Unity. So what does that mean for Octavia? Let's begin.
+
+## Architecture
+Below is a simplified table that relates how ECS is represented within Octavia.
+
+| ECS Name  | Octavia Name          |
+| :---------| :-------------------: |
+| Entity    | Game Object           |
+| Component | Game Object Component |
+| System    | Game Object Manager   |
+
+### Game Object Component (GOC)
+These are what make a Game Object unique. You could say they're like personality traits. Wether that be in action or appearance, components are what makes a Game Object a Game Object. An example would be a bright light that shines red, a terrain mesh that uses a plane for geometry, a model of a medieval knight with animations, etc. Those combined would make a very unique looking and acting Game Object.
+
+### Game Object (GO)
+These are what you see on screen as objects in your program. Game Objects are comprised of components that make them unique. They belong to a specific Game Scene (GS) within your program. If the scene in which the Game Object is assembled is not being viewed, you will not see that Game Object until it's parent Game Scene is viewed again. There can be many Game Objects based off the same assembly, similar to cloning you could say.
+
+### Game Object Manager (MGO)
+This is the part of the engine that handles the storage and creation of Game Objects (entities), their assemblies, and their subsequent components. Game Objects are created using "Assemblies". An Assembly could be considered a template for a Game Object.
+
+Now let's see how we can use Octavia's ECS...

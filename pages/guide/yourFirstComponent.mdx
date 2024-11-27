@@ -1,0 +1,58 @@
+import { Steps } from 'nextra/components'
+
+# Let's Create A Component!
+In order to make Game Objects, you need to create components to give them.. PERSONALITY.
+
+## A Simple Script Component
+Script components are the basis for making custom component in your program. They're essentially blank components that you can extend to make insanely detailed.
+
+<Steps>
+### Creation
+Let's create a folder for all of our components located in within the ```src``` folder. We'll call it ```components```. Now create a file in that folder called ```CubeMesh.js``` and paste the code below in the file.
+
+```js filename="src/components/CubeMesh.js"
+import { OCTAVIA } from "@little-island/octavia-engine"
+import * as THREE from "three"
+
+class CubeMesh extends OCTAVIA.Core.ScriptComponent
+{
+    constructor (...args)
+    {
+        super(...args)
+
+        this.Geometry = new THREE.BoxGeometry(1, 1, 1)
+        this.Mesh     = new OCTAVIA.Core.Mesh(this.Geometry)
+    }
+
+    Start ()
+    {
+        this.AddGLObjectToScene(this.Mesh)
+    }
+}
+
+export { CubeMesh }
+```
+
+### What Did We Do?
+Let's break this down. Inside the constructor we are creating two variables, these being ```Geometry``` and ```Mesh```. You can probably guess what they respectably. The ```Geometry``` variable is the geometric data that the mesh will be based on (the thing that makes it a cube). The ```Mesh``` variable creates polygonal-object (mesh) based on the ```Geometry``` variable. 
+
+**NOTE:**<br />
+The ```OCTAVIA.Core.Mesh``` class is a further extended of the Three.js ```Mesh``` class. Most users of Three.js would notice that there is no material being passed into the mesh's arguments. That's because Octavia has a default material for all ```OCTAVIA.Core.Mesh``` based meshes.
+
+The ```Start()``` method is called when the component's Game Object (parent) is created and all of its components have been initialized. In our component, we add the mesh to the GO's parent Game Scene when we create our GO.
+</Steps>
+
+## Storing It
+If you want to use the component you just created, you have to store it within the engine so it can be accessed whenever needed by the MGO.
+
+Let's create a folder for all the stored data in our program. We're going to put this ```src``` folder and call it ```core```. Now create a file in that folder called ```components.js``` and paste the code below in the file.
+
+```js filename="src/core/components.js"
+import { CubeMesh } from '../components/CubeMesh'
+
+export const COMPONENTS = {
+    "Cube Mesh" : CubeMesh
+}
+```
+
+We can store all of our components here from now on. Now let's create our first Assembly...

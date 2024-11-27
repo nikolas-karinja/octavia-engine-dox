@@ -1,0 +1,79 @@
+import { Steps } from 'nextra/components'
+import Image from 'next/image'
+import sc_firstInterfaceLook from "../../img/screenshots/first_interface_look.png"
+
+# Implementation
+To use Octavia, you can install it using NPM since it's a package. It's meant to be used alongside React for UI and Three.js for graphics.
+
+## Quick Start
+Here is the simplest way to implement Octavia into your existing React project.
+
+<Steps>
+### Install
+In your project directory, run the following command to install the dependencies
+
+```shellscript
+npm i --save three @little-island/octavia-engine
+```
+Add the following scripts in ```package.json```
+
+```json filename="package.json"
+"scripts": {
+    "update-three": "npm uninstall --save three && npm i --save three",
+    "update-engine": "npm uninstall --save @little-island/octavia-engine && npm i --save @little-island/octavia-engine"
+},
+```
+
+### Creating the React Component
+Assuming you used the ```create-react-app``` package to create your project, you can create a new Component. It will be created under ```src/Octavia.jsx```.
+
+```jsx filename="src/Octavia.jsx"
+import { OCTAVIA } from "@little-island/octavia-engine"
+
+const Octavia = ({children}) =>
+{
+    return <OCTAVIA.Interface>
+        {children}
+        </OCTAVIA.Interface>
+}
+
+export default Octavia
+```
+
+Then in the file ```src/App.jsx``` replace the code with the code below.
+
+```jsx filename="src/App.jsx"
+import './App.css';
+import Octavia from './Octavia';
+
+const App = () => 
+{
+    return (
+        <div className="App">
+            <Octavia>
+            {/* All of your program's react components you
+            want to see in-game go here */}
+            </Octavia>
+        </div>
+    );
+}
+
+export default App;
+```
+
+Now your program is ready to start.
+
+### Starting the Program
+You start it up just like you would with ```create-react-app``` template.
+
+```shellscript
+npm start
+```
+
+Once the program is in view on your browser, press the ```F2``` key to view the Octavia's interface. Hold down the left-mouse button ```LMB``` and drag the mouse around. You should see something similar to what is pictured below.
+
+<br />
+<Image src={sc_firstInterfaceLook} alt="First interface look" />
+</Steps>
+
+Now Octavia has officially been integrated into your program. Now let's try to understand as best we can how Octavia works "under the hood"...

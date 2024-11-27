@@ -1,0 +1,55 @@
+import { Steps } from 'nextra/components'
+import Image from 'next/image'
+import sc_readySetAction from "../../img/screenshots/ready_set_action.png"
+
+# Programmers, ASSEMBLE!
+Now we will store our components and assemblies within Octavia so we can see our first Game Object!
+
+## Back To React
+Everything we store will be within Octavia's interface.
+
+<Steps>
+### Storing Our Data
+Let's go back to the file ```src/Octavia.jsx``` and add some "props" to the interface. The new code looks like this:
+
+```js filename="src/Octavia.jsx"
+import { OCTAVIA } from "@little-island/octavia-engine"
+import { COMPONENTS } from "./core/components"
+import { ASSEMBLIES } from "./core/assemblies"
+
+const Octavia = ({children}) =>
+{
+    return <OCTAVIA.Interface
+        data={{
+            assemblies : ASSEMBLIES,
+            components : COMPONENTS,
+        }}
+        onReady={() =>
+        {
+            OCTAVIA.AssembleGameObject("My Cube")
+        }}>
+        {children}
+        </OCTAVIA.Interface>
+}
+
+export default Octavia
+```
+
+### What Did We Do?
+We stored our assemblies and components within the interface along with adding an action for when Octavia is loaded and ready. The ```onReady``` prop's value should be a function. Whatever is in that function will be called when the engine has loaded all necessary data (a.k.a. Octavia is ready). 
+
+In our case we are just assembling a GO based off the assembly we made earlier.
+
+### Seeing The Results
+If you haven't already and your project is based on the ```create-react-app``` template, enter this into the shell within your project's root directory:
+
+```shell
+npm start
+```
+
+Once your program is visible and ready in the browser, you should see something similar to what's depicted below on screen.
+<br />
+<Image src={sc_readySetAction} alt="Ready Set Action!" />
+
+Congratulations. You have successfully created your first Game Object! That's the basic principal behind creating things in Octavia. But where is the detail? Let's move on shall we...
+</Steps>

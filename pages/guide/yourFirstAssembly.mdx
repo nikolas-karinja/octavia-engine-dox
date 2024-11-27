@@ -1,0 +1,31 @@
+import { Steps } from 'nextra/components'
+
+# A Lovely Little Friend
+These are the templates in-which Game Objects are based on. Clones do have value you know..
+
+## A Simple Assembly
+They can be very lengthy and complex. But since we only have one custom component, we can make this ver simple.
+
+<Steps>
+### Creation
+In the same folder called ```core``` that we just created, let's make a new file named ```assemblies.js``` and paste the code below in the file.
+
+```js filename="src/core/assemblies.js"
+export const ASSEMBLIES = {
+    "My Cube": {
+        gameScene: "Main",
+        components: {
+            "Cube Mesh" : {}
+            /* More components can be added here */
+        }
+    }
+}
+```
+
+### What Did We Do?
+That is our first Assembly! Simple huh. Let's break it down. 
+
+```"My Cube"``` is the name of the assembly. The value of the property ```gameScene``` is a string representing the name of the Game Scene in which the GO will be stored. The property ```components``` is an object that holds the name and options of the components this GO will utilize. ```"Cube Mesh"``` is the name of our stored component (if you remember). For future reference, the initial option values for components go within those curly brackets (the value of the ```"Cube Mesh"``` property).
+</Steps>
+
+Now let's put a Game Object out into the world...
